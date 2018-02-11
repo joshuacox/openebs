@@ -120,11 +120,12 @@ The OpenShift deploy cluster playbook performs a health-check prior to execution
 
 3. Run the Ansible Playbook job to setup OpenShift cluster.
 
-  Once the inventory file is ready, run the deploy_cluster playbook to setup the OpenShift cluster. The setup can take around 15-20 minutes depending on network speed and resources available.
+  Once the inventory file is ready, run the prerequisites, and then the deploy_cluster playbook to setup the OpenShift cluster. The setup can take around 15-20 minutes depending on network speed and resources available.
 
   **Note:**
   The deploy_cluster playbook also includes playbooks to setup Glusterfs, monitoring, logging and so on which are optional. In this example, only the etcd, master, node, and management setup playbooks were executed, with other playbook imports commented.
   ::
+    ansible-playbook -i openshift-ansible/openshift_inventory openshift-ansible/playbooks/prerequisites.yml
     ansible-playbook -i openshift-ansible/openshift_inventory openshift-ansible/playbooks/deploy_cluster.yml
 
   The playbook should complete without errors. The trailing output of the playbook run should look similar to the following:
